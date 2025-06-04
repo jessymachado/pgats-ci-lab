@@ -5,7 +5,7 @@ name: 'Execução Manual'
 # (não inclui `trigger:` nem `schedules:`)
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: 'agent-jessy'
 
 steps:
   # Clonar repositório
