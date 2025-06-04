@@ -1,0 +1,33 @@
+# Nome do pipeline (opcional, pode usar displayName no portal)
+name: 'Execução Manual'
+
+# ⚠️ Nenhum gatilho automático definido → execução só manual
+# (não inclui `trigger:` nem `schedules:`)
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  # Clonar repositório
+  - checkout: self
+
+  # Instalar Node.js
+  - task: UseNode@1
+    inputs:
+      version: '22.x'
+
+  # Instalar Yarn globalmente
+  - script: npm install -g yarn
+    displayName: Instalando Yarn
+
+  # Instalar dependências
+  - script: yarn
+    displayName: Instalando dependências
+
+  # Instalar Playwright
+  - script: yarn playwright install
+    displayName: Instalando Playwright
+
+  # Executar testes E2E
+  - script: yarn run e2e
+    displayName: Executando Testes E2E
