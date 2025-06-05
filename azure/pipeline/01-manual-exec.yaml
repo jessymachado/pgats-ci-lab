@@ -9,7 +9,7 @@ jobs:
   - job: RunTestsCoreChange
     displayName: 'Executar Testes E2E'
     pool: 
-      name: 'agent-jessy'
+      name: 'Default'
     timeoutInMinutes: 180
 
     steps:
