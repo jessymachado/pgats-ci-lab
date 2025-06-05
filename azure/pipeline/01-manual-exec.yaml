@@ -8,8 +8,8 @@ pr: none       # Também desativa pull requests
 jobs:
   - job: RunTestsCoreChange
     displayName: 'Executar Testes E2E'
-    pool: 
-      name: 'Default'
+    pool:
+      vmImage: 'ubuntu-latest'  # Agente hospedado pela Microsoft
     timeoutInMinutes: 180
 
     steps:
