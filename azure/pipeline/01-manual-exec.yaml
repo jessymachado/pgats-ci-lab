@@ -6,10 +6,11 @@ trigger: none  # Recomendado para deixar explícito
 pr: none       # Também desativa pull requests
 
 jobs:
-  - job: RunTestsCoreChange
+  - job: RunTestsE2E
     displayName: 'Executar Testes E2E'
     pool:
-      vmImage: 'ubuntu-latest'  # Agente hospedado pela Microsoft
+      #vmImage: 'ubuntu-latest'  # Agente hospedado pela Microsoft
+      name: 'agent-jessy'
     timeoutInMinutes: 180
 
     steps:
