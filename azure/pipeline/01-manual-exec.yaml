@@ -1,36 +1,38 @@
-# Nome do pipeline (opcional, pode usar displayName no portal)
+# Nome do pipeline
 name: 'Execução Manual'
 
-# ⚠️ Nenhum gatilho automático definido → execução só manual
-# (não inclui `trigger:` nem `schedules:`)
+# Nenhum gatilho automático → execução apenas manual
+trigger: none  # Recomendado para deixar explícito
+pr: none       # Também desativa pull requests
 
-job:  
+jobs:
   - job: RunTestsCoreChange
-    pool: 'agent-jessy'
+    displayName: 'Executar Testes E2E'
+    pool: 
+      name: 'agent-jessy'
     timeoutInMinutes: 180
+
     steps:
+      # Clonar repositório
+      - checkout: self
 
-  steps:
-    # Clonar repositório
-    - checkout: self
+      # Instalar Node.js
+      - task: UseNode@1
+        inputs:
+          version: '22.x'
 
-    # Instalar Node.js
-    - task: UseNode@1
-      inputs:
-        version: '22.x'
+      # Instalar Yarn globalmente
+      - script: npm install -g yarn
+        displayName: Instalando Yarn
 
-    # Instalar Yarn globalmente
-    - script: npm install -g yarn
-      displayName: Instalando Yarn
+      # Instalar dependências
+      - script: yarn
+        displayName: Instalando dependências
 
-    # Instalar dependências
-    - script: yarn
-      displayName: Instalando dependências
+      # Instalar Playwright
+      - script: yarn playwright install
+        displayName: Instalando Playwright
 
-    # Instalar Playwright
-    - script: yarn playwright install
-      displayName: Instalando Playwright
-
-    # Executar testes E2E
-    - script: yarn run e2e
-      displayName: Executando Testes E2E
+      # Executar testes E2E
+      - script: yarn run e2e
+        displayName: Executando Testes E2E
