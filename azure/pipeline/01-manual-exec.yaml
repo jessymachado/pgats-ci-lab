@@ -37,3 +37,10 @@ jobs:
       # Executar testes E2E
       - script: yarn run e2e
         displayName: Executando Testes E2E
+      
+      - task: PublishTestResults@2
+      displayName: 'Publicar Relatório de Testes'
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/results.xml'
+      condition: always()
