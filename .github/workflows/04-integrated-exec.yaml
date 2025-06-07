@@ -1,0 +1,69 @@
+#CI de Nível 04 - Disparo dos testes demtro do pipe de dev
+
+name: 'Execução Integrada'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inspecao:
+    runs-on:  ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalando Yarn
+        run: npm install -g yarn
+        
+      - name: Instalando dependências 
+        run: yarn
+
+      - name: Checando a padronização do código
+        run: yarn lint      
+
+  unidade:
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Instalando Yarn
+      run: npm install -g yarn
+      
+    - name: Instalando dependências 
+      run: yarn
+
+    - name: Executando testes de unidade
+      run: yarn test
+
+
+  e2e-tests:
+    runs-on:  ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Instalando Yarn
+      run: npm install -g yarn
+      
+    - name: Instalando dependências 
+      run: yarn      
+
+    - name: Instalando Playwright
+      run: yarn playwright install
+          
+    - name: Executando Testes E2E
+      run: yarn run e2e 
+
+    - name: Upload artefatos
+      uses: actions/upload-artifact@v4
+      if: ${{ always() }}
+      with:
+        path: ./playwright-report
+
+
+  deploy:
+    runs-on:  ubuntu-latest
+    steps:
+    - name: 'Deploy simulation'
+    
+    
+  
+
+
