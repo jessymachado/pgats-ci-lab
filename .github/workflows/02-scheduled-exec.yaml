@@ -12,19 +12,18 @@ on:
   # c dia do mês
   # d mês
   # e dia da semana
-  # * curinga  
+  # * curinga
   #  'CRON'
   # a b c d e
   # 0 6 * * 1
 
-  schedule:  
-  # rodar os regressivso toda segunda-feira pela manhã
-  -  cron: '0 6 * * 1'
+  schedule:
+    # rodar os regressivso toda segunda-feira pela manhã
+    - cron: '0 6 * * 1'
 
 #trabalhos/tarefas dentro do pipeline = jobs
 jobs:
   e2e-tests:
-    
     #maquina que o job vai executar
     runs-on: ubuntu-latest
 
@@ -45,11 +44,11 @@ jobs:
       # instalação das dependências
       - name: Instalando dependências
         run: yarn
-      
+
       # instalação do Playwright
       - name: Instalando Playwright
         run: yarn playwright install
-      
+
       # executar os testes e2e
       - name: Executando Testes E2E
         run: yarn run e2e

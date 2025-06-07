@@ -2,8 +2,8 @@
 name: 'Execução Manual'
 
 # Nenhum gatilho automático → execução apenas manual
-trigger: none  # Recomendado para deixar explícito
-pr: none       # Também desativa pull requests
+trigger: none # Recomendado para deixar explícito
+pr: none # Também desativa pull requests
 
 jobs:
   - job: RunTestsE2E
