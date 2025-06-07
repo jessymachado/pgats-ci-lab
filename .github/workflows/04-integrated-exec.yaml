@@ -61,7 +61,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-       - name: 'Deploy simulation'
+      - name: 'Deploy simulation'
     
     
   
