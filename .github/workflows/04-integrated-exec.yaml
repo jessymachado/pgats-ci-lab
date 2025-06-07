@@ -58,10 +58,10 @@ jobs:
         with:
           path: ./playwright-report
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: 'Deploy simulation'
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Deploy simulation'
     
     
   
